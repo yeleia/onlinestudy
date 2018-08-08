@@ -2,7 +2,8 @@ package org.wingstudio.entity;
 
 import java.util.Date;
 
-public class Student {private Integer id;
+public class Student {
+    private Integer id;
 
     private Integer stuNum;
 
@@ -14,10 +15,6 @@ public class Student {private Integer id;
 
     private Date createTime;
 
-    public Integer getId() {
-        return id;
-    }
-
     public Student(Integer id, Integer stuNum, String name, String password, Integer status, Date createTime) {
         this.id = id;
         this.stuNum = stuNum;
@@ -25,6 +22,14 @@ public class Student {private Integer id;
         this.password = password;
         this.status = status;
         this.createTime = createTime;
+    }
+
+    public Student() {
+        super();
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public void setId(Integer id) {
@@ -44,7 +49,7 @@ public class Student {private Integer id;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
     public String getPassword() {
@@ -52,7 +57,7 @@ public class Student {private Integer id;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 
     public Integer getStatus() {

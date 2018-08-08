@@ -33,7 +33,7 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
     <!--静态资源的访问-->
-    <!--<mvc:resources mapping="/static/**" location="/static/"/>-->
+    <mvc:resources mapping="/static/**" location="/static/"/>
     <!-- 结果视图解析器 -->
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
