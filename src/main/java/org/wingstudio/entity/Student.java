@@ -18,6 +18,15 @@ public class Student {private Integer id;
         return id;
     }
 
+    public Student(Integer id, Integer stuNum, String name, String password, Integer status, Date createTime) {
+        this.id = id;
+        this.stuNum = stuNum;
+        this.name = name;
+        this.password = password;
+        this.status = status;
+        this.createTime = createTime;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
