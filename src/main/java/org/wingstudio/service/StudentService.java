@@ -1,5 +1,8 @@
 package org.wingstudio.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
+import org.wingstudio.entity.Category;
 import org.wingstudio.entity.Student;
 import org.wingstudio.entity.Video;
 
@@ -17,9 +20,15 @@ public interface StudentService {
     Student doLogin(int stuNum, String password);
 
 
+    List<Category> getAllCategories();
+
+
+    List<Video> getRecentVideos();
+
 //    List<Video> getCollections(int stuId);
 
 
+    PageInfo<Video> getPageVideos(int pageNum, int pageSize);
 
 
 

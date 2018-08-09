@@ -176,4 +176,9 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <select id="getRecentVideos" resultMap="BaseResultMap" >
+    SELECT * FROM video ORDER BY create_time DESC
+  </select>
 </mapper>

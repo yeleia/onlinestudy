@@ -81,4 +81,9 @@
       create_user = #{createUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <select id="getAllCategories" resultMap="BaseResultMap">
+    SELECT * FROM category
+  </select>
 </mapper>
