@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.wingstudio.Common.Const;
 import org.wingstudio.entity.Category;
+import org.wingstudio.entity.Comment;
 import org.wingstudio.entity.Student;
 import org.wingstudio.entity.Video;
 import org.wingstudio.service.StudentService;
@@ -46,7 +47,8 @@ public class StuController {
         }else {
             student.setPassword("");
             request.getSession().setAttribute(Const.CURRENT_STU,student);
-            modelAndView.setViewName("student/index");
+            //转发到to_index请求，不用重新准备主页的数据了
+            modelAndView.setViewName("redirect:/to_page_index");
         }
         return modelAndView;
     }
@@ -98,6 +100,46 @@ public class StuController {
     }
 
 
+    @RequestMapping("/to_video_play")
+    public ModelAndView toVideoPlay(int videoId,HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView();
+        //验证是否已登录
+        Object curentStu = request.getSession().getAttribute(Const.CURRENT_STU);
+        if(curentStu==null){
+            modelAndView.setViewName("error");
+            modelAndView.addObject(Const.MSG,"需要登录才能观看视频");
+            return modelAndView;
+        }
+        List<Category> categories = studentService.getAllCategories();
 
+
+        Video video = studentService.viewOneVideo(videoId);
+        //最好重新建个类来承载comment的数据，里面有评论学生的姓名信息，以及格式化好的日期
+        List<Comment> comments = studentService.getOneVideoComments(videoId);
+        modelAndView.addObject("categories",categories);
+        modelAndView.addObject("video",video);
+        modelAndView.addObject("comments",comments);
+        modelAndView.setViewName("student/video_play");
+        return modelAndView;
+    }
+
+    @RequestMapping("/do_comment")
+    public ModelAndView doComment(String content,int videoId,HttpServletRequest request){
+
+        System.out.println("content:"+content+"-------------");
+        System.out.println("videoId:"+videoId+"-------------");
+
+        ModelAndView modelAndView = new ModelAndView();
+        //验证是否已登录
+        Student curentStu = (Student) request.getSession().getAttribute(Const.CURRENT_STU);
+        if(curentStu==null){
+            modelAndView.setViewName("error");
+            modelAndView.addObject(Const.MSG,"需要登录才能评论视频");
+            return modelAndView;
+        }
+        studentService.doComment(curentStu.getId(),videoId,content);
+        modelAndView.setViewName("redirect:/to_video_play?videoId="+videoId);
+        return modelAndView;
+    }
 
 }

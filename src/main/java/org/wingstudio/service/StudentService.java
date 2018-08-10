@@ -3,6 +3,7 @@ package org.wingstudio.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import org.wingstudio.entity.Category;
+import org.wingstudio.entity.Comment;
 import org.wingstudio.entity.Student;
 import org.wingstudio.entity.Video;
 
@@ -31,6 +32,14 @@ public interface StudentService {
     PageInfo<Video> getPageVideos(int pageNum, int pageSize);
 
 
+
+    Video viewOneVideo(int videoId);
+
+
+    List<Comment> getOneVideoComments(int videoId);
+
+
+    void doComment(int stuId,int videoId,String content);
 
 
 }
