@@ -81,6 +81,7 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.jr:jackson-jr-all:2.5.0" level="project" />
     <orderEntry type="library" name="Maven: com.thetransactioncompany:java-property-utils:1.9.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.6.2" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.24" level="project" />
     <orderEntry type="library" name="Maven: com.github.pagehelper:pagehelper:4.1.0" level="project" />
     <orderEntry type="library" name="Maven: com.github.jsqlparser:jsqlparser:0.9.4" level="project" />
   </component>
